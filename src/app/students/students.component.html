@@ -1,0 +1,22 @@
+    <!-- igualo al valor opuesto -->
+    <button
+      (click)="showStudents = !showStudents"
+      class="px-5 py-2 bg-gradient-to-r from-purple-600 to-sky-800 text-white mb-4 w-full rounded-lg"
+    >
+      Mostrar listado
+    </button>
+    <ul *ngIf="showStudents" class="py-4 bg-neutral-800 rounded-lg">
+      @for (student of students; track $index) {
+        <li [ngClass]="student.isApproved ? 'text-emerald-300' : 'text-red-200 bg-red-900'"
+        
+        class="py-2 border-b border-neutral-400 px-4 flex justify-between">
+          {{$index}}-{{student.name}} 
+          <span  [ngClass]="student.email.includes('@example.com') ? 'text-sky-500' : 'text-sky-300'">
+            {{student.email}}
+          </span>
+        </li>
+      }
+    </ul>
+    <div *ngIf="!showStudents" class="py-4 bg-neutral-800 rounded-lg">
+      <h2 class="mx-2 text-2xl font-bold text-neutral-600">No hay registros</h2>
+    </div>
